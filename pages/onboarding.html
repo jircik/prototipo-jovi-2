@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOVI Cam — Onboarding</title>
+  <link rel="stylesheet" href="../src/css/onboarding.css">
+</head>
+<body>
+  <a class="hub-link" href="hub.html">← Hub</a>
+  <main class="screen">
+
+    <!-- Status Bar -->
+    <header class="status-bar">
+      <span class="time">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="status-icons">
+        <span>▲▲▲</span>
+        <span>WiFi</span>
+        <span>🔋</span>
+      </div>
+    </header>
+
+    <!-- Camera Viewfinder (background) -->
+    <section class="viewfinder">
+      <div class="ruido"></div>
+    </section>
+
+    <!-- Onboarding Card Overlay -->
+    <section class="area-card">
+      <article class="card">
+
+        <!-- Progress Indicators (clickable dots) -->
+        <div class="indicadores" id="dots">
+          <button class="dot dot-ativo" data-slide="0" aria-label="Slide 1"></button>
+          <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+          <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+          <button class="dot" data-slide="3" aria-label="Slide 4"></button>
+        </div>
+
+        <!-- Icon -->
+        <div class="circulo-icone">
+          <span class="estrela">✦</span>
+        </div>
+
+        <!-- Slides (only the active one is visible) -->
+        <div class="slides" id="slides">
+          <div class="slide slide-ativo">
+            <h1 class="titulo-card">Bem-vindo ao<br>JOVI Cam</h1>
+            <p class="desc-card">Sua câmera agora é inteligente.<br>Deixa ela fazer o trabalho por você.</p>
+          </div>
+          <div class="slide">
+            <h1 class="titulo-card">Modo IA Auto</h1>
+            <p class="desc-card">A câmera detecta automaticamente o<br>ambiente e ajusta o modo ideal — <br>balada, paisagem, comida e muito.</p>
+          </div>
+          <div class="slide">
+            <h1 class="titulo-card">Modo Estudo</h1>
+            <p class="desc-card">Fotografe anotações ou a lousa e a IA <br>organiza tudo direto no seu app de notas.</p>
+          </div>
+          <div class="slide">
+            <h1 class="titulo-card">Navegue pelos modos</h1>
+            <p class="desc-card">Arraste a barra de modos ou toque <br>diretamente para trocar. IA Auto é <br>sempre o ponto de partida.</p>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <button class="btn-proximo" id="btn-proximo">Próximo</button>
+        <div class="linha-navegacao">
+          <button class="btn-anterior" id="btn-anterior" disabled>Anterior</button>
+          <button class="btn-pular" id="btn-pular">Pular tutorial</button>
+        </div>
+
+      </article>
+    </section>
+
+  </main>
+
+  <script src="../src/js/onboarding.js"></script>
+</body>
+</html>
