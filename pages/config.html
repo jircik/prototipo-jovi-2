@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOVI Cam — Configurar Modos</title>
+  <link rel="stylesheet" href="../src/css/config.css">
+</head>
+<body>
+  <a class="hub-link" href="hub.html">← Hub</a>
+  <main class="screen">
+
+    <!-- Status Bar -->
+    <header class="status-bar">
+      <span class="time">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="status-icons">
+        <span>▲▲▲</span>
+        <span>WiFi</span>
+        <span>🔋</span>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <header class="header-pagina">
+      <h1 class="titulo-pagina">Modos</h1>
+      <div class="acoes-header">
+        <button class="btn-editar" id="btn-editar">Editar</button>
+        <!-- COMMIT 11 (não incluir no commit 5): botão "Voltar" linka para camera.html, que ainda não existe no commit 5 -->
+        <a href="camera.html" class="btn-voltar">Voltar</a>
+        <!-- /COMMIT 11 -->
+      </div>
+    </header>
+
+    <!-- Content -->
+    <section class="content">
+      <div class="grade-modos" id="grade-modos">
+
+        <!-- Active modes (with remove badge) -->
+        <article class="item-modo" data-name="Alta Resolução" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-res">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 14.5C21 15.3284 20.3284 16 19.5 16H2.5C1.67157 16 1 15.3284 1 14.5V5.5C1 4.67157 1.67157 4 2.5 4H5.5L7 2H15L16.5 4H19.5C20.3284 4 21 4.67157 21 5.5V14.5Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <circle cx="11" cy="10" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <circle cx="11" cy="10" r="1.2" fill="rgba(255,255,255,0.5)"/>
+            </svg>
+          </div>
+          <p class="label-modo">Alta Resolução</p>
+        </article>
+
+        <article class="item-modo" data-name="Noturno" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-noturno">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 11.5C17.2 15.1 13.9 17.8 10 17.8C5.6 17.8 2 14.3 2 9.9C2 6.3 4.3 3.3 7.5 2.2C6.5 3.5 6 5.1 6 6.8C6 11 9.5 14.4 13.8 14.4C15.4 14.4 16.8 13.9 18 13L18 11.5Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Noturno</p>
+        </article>
+
+        <article class="item-modo" data-name="Panorâmica" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-pano">
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="20" height="12" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="7" y1="1" x2="7" y2="13" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+              <line x1="15" y1="1" x2="15" y2="13" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            </svg>
+          </div>
+          <p class="label-modo">Panorâmica</p>
+        </article>
+
+        <article class="item-modo" data-name="Retrato" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-retrato">
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9" cy="7" r="4" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <path d="M1 21C1 16.5817 4.58172 13 9 13C13.4183 13 17 16.5817 17 21" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Retrato</p>
+        </article>
+
+        <article class="item-modo item-custom" data-name="Estudo" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-estudo">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3H10V17H3V3Z" stroke="rgba(51,199,120,0.9)" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M10 3H17V17H10V3Z" stroke="rgba(51,199,120,0.9)" stroke-width="1.5" stroke-linejoin="round"/>
+              <line x1="5" y1="7" x2="8" y2="7" stroke="rgba(51,199,120,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="5" y1="10" x2="8" y2="10" stroke="rgba(51,199,120,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="12" y1="7" x2="15" y2="7" stroke="rgba(51,199,120,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="12" y1="10" x2="15" y2="10" stroke="rgba(51,199,120,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="label-modo label-verde">Estudo</p>
+        </article>
+
+        <article class="item-modo item-custom" data-name="IA" data-active="true">
+          <button class="badge badge-remover" aria-label="Remover">✕</button>
+          <div class="icone-modo icone-ia">
+            <span class="estrela-ia">✦</span>
+          </div>
+          <p class="label-modo label-azul">IA</p>
+        </article>
+
+        <!-- Section divider -->
+        <div class="divisor-secao">Outros Modos</div>
+
+        <!-- Inactive modes (with add badge) -->
+        <article class="item-modo" data-name="Comida" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-comida">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 1V7C3 9.209 4.791 11 7 11V19" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7 1V11" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11 1C11 1 15 4 15 8C15 10.5 13.5 11.5 11 12V19" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Comida</p>
+        </article>
+
+        <article class="item-modo" data-name="Intervalo" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-intervalo">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="11" r="7" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+              <path d="M10 8V11L12 13" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7 2H13" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 2V4" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Intervalo</p>
+        </article>
+
+        <article class="item-modo" data-name="Instantâneo" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-instantaneo">
+            <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1L1 13H8L7 21L15 9H8L9 1Z" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Instantâneo</p>
+        </article>
+
+        <article class="item-modo" data-name="Astro" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-astro">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="9" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+              <circle cx="11" cy="11" r="3" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+              <circle cx="4" cy="4" r="1" fill="rgba(255,255,255,0.5)"/>
+              <circle cx="18" cy="5" r="1" fill="rgba(255,255,255,0.5)"/>
+              <circle cx="6" cy="18" r="1" fill="rgba(255,255,255,0.5)"/>
+            </svg>
+          </div>
+          <p class="label-modo">Astro</p>
+        </article>
+
+        <article class="item-modo" data-name="Visualização Dupla" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-dupl">
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="9" height="14" rx="1.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+              <rect x="12" y="1" width="9" height="14" rx="1.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <p class="label-modo">Visualização Dupla</p>
+        </article>
+
+        <article class="item-modo" data-name="Documento em Ultra HD" data-active="false">
+          <button class="badge badge-adicionar" aria-label="Adicionar">+</button>
+          <div class="icone-modo icone-doc">
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 2C1 1.44772 1.44772 1 2 1H10L15 6V18C15 18.5523 14.5523 19 14 19H2C1.44772 19 1 18.5523 1 18V2Z" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+              <path d="M10 1V6H15" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linejoin="round"/>
+              <line x1="4" y1="10" x2="12" y2="10" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="4" y1="13" x2="12" y2="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="label-modo">Documento em Ultra HD</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Bottom Mode Tabs -->
+    <nav class="mode-tabs" id="bottom-tabs">
+      <button class="mode-tab" data-mode="estudo">Estudo</button>
+      <button class="mode-tab" data-mode="ia">IA</button>
+      <button class="mode-tab" data-mode="noite">Noite</button>
+      <button class="mode-tab mode-tab-ativo" data-mode="mais">
+        Mais
+        <span class="tab-dot"></span>
+      </button>
+    </nav>
+
+  </main>
+
+  <script src="../src/js/config.js"></script>
+</body>
+</html>
