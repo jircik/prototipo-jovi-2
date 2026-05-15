@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOVI Cam — Câmera</title>
+  <link rel="stylesheet" href="../src/css/camera.css">
+</head>
+<body>
+  <a class="hub-link" href="hub.html">← Hub</a>
+  <main class="screen camera camera-ia" id="camera">
+
+    <!-- Status Bar -->
+    <header class="status-bar">
+      <span class="time">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="status-icons">
+        <span>▲▲▲</span>
+        <span>WiFi</span>
+        <span>🔋</span>
+      </div>
+    </header>
+
+    <!-- Top Controls Bar -->
+    <nav class="barra-topo" id="barra-topo">
+      <button class="ctrl-btn" data-ctrl="hdr">⊙</button>
+      <button class="ctrl-btn" data-ctrl="flash">⚡</button>
+      <button class="ctrl-btn ctrl-btn-ativo" data-ctrl="grid">◎</button>
+      <button class="ctrl-btn" data-ctrl="filter">◈</button>
+      <button class="ctrl-btn" data-ctrl="settings">⚙</button>
+    </nav>
+
+    <!-- Viewfinder -->
+    <section class="viewfinder">
+      <video class="video-cam" id="video-cam" autoplay muted playsinline></video>
+      <div class="fallback-cam" id="fallback-cam"></div>
+
+      <!-- AI Chip -->
+      <div class="chip-ia">
+        <span class="chip-dot"></span>
+        <span class="chip-label" id="chip-label">IA · Modo Noite detectado</span>
+      </div>
+
+      <!-- Grid overlay -->
+      <div class="grid-overlay" id="grid-overlay">
+        <div class="linha-grid grid-v1"></div>
+        <div class="linha-grid grid-v2"></div>
+        <div class="linha-grid grid-h1"></div>
+        <div class="linha-grid grid-h2"></div>
+      </div>
+
+      <!-- Focus Reticle -->
+      <div class="foco">
+        <span class="canto canto-tl"></span>
+        <span class="canto canto-tr"></span>
+        <span class="canto canto-bl"></span>
+        <span class="canto canto-br"></span>
+      </div>
+
+      <!-- Scan Line (visible in Estudo mode only) -->
+      <div class="linha-scan"></div>
+
+      <!-- Photo Counter -->
+      <div class="contador-fotos" id="contador-fotos">0 fotos</div>
+
+      <!-- Flash effect overlay -->
+      <div class="overlay-flash" id="overlay-flash"></div>
+    </section>
+
+    <!-- Zoom Selector -->
+    <div class="zoom-bar" id="zoom-bar">
+      <button class="zoom-option" data-zoom="0.6">0.6x</button>
+      <button class="zoom-option zoom-option-ativo" data-zoom="1">1×</button>
+      <button class="zoom-option" data-zoom="2">2×</button>
+    </div>
+
+    <!-- Mode Tabs -->
+    <nav class="mode-tabs" id="mode-tabs">
+      <button class="mode-tab mode-tab-estudo" data-mode="estudo">Estudo</button>
+      <button class="mode-tab mode-tab-ia mode-tab-ativo" data-mode="ia">
+        IA
+        <span class="tab-dot"></span>
+      </button>
+      <button class="mode-tab" data-mode="noite">Noite</button>
+      <button class="mode-tab" data-mode="foto">Foto</button>
+      <button class="mode-tab" data-mode="video">Vídeo</button>
+      <a href="config.html" class="mode-tab">Modos</a>
+    </nav>
+
+    <!-- Action Buttons (only in Estudo mode) -->
+    <section class="action-row" id="action-row">
+      <button class="btn-action" id="btn-resumo">Resumo IA</button>
+      <button class="btn-action" id="btn-copiar">Copiar Texto</button>
+    </section>
+
+    <!-- Camera Controls -->
+    <footer class="controles-camera">
+      <button class="btn-gallery" id="btn-gallery">📷</button>
+      <button class="btn-shutter" id="btn-shutter"></button>
+      <button class="btn-flip" id="btn-flip">⟳</button>
+    </footer>
+
+  </main>
+
+  <script src="../src/js/camera.js"></script>
+</body>
+</html>
