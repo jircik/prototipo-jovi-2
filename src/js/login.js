@@ -1,4 +1,4 @@
-const form = document.getElementById("form-login");
+  const form = document.getElementById("form-login");
 const inputEmail = document.getElementById("email");
 const inputSenha = document.getElementById("senha");
 const erroEmail = document.getElementById("erro-email");
@@ -63,7 +63,7 @@ form.addEventListener("submit", (e) => {
     return;
   }
   alert(`Login realizado com sucesso!\nBem-vindo(a), ${inputEmail.value.trim()}.`);
-  window.location.href = "pages/hub.html";
+  window.location.href = "hub.html";
 });
 
 linkCadastro.addEventListener("click", (e) => {
