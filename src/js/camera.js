@@ -246,11 +246,20 @@ async function iniciarCamera() {
     });
     videoCam.srcObject = stream;
     telaCamera.classList.remove("no-camera");
+    await videoCam.play().catch(() => {});
   } catch (err) {
     telaCamera.classList.add("no-camera");
     console.warn("Câmera indisponível:", err);
   }
 }
+
+/* No iOS/Safari, alert()/prompt() pausam o <video>. Se o stream ainda
+   estiver ativo, retoma a reprodução para a câmera não congelar. */
+videoCam.addEventListener("pause", () => {
+  if (stream && stream.active) {
+    videoCam.play().catch(() => {});
+  }
+});
 
 renderizarAbas();
 
