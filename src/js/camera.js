@@ -159,8 +159,78 @@ btnResumo.addEventListener("click", () => {
   alert("Resumo gerado pela IA:\n\nO conteúdo capturado foi processado e está disponível no seu app de notas.");
 });
 
-btnCopiar.addEventListener("click", () => {
-  alert("Texto copiado para a área de transferência!");
+async function copiarParaClipboard(texto) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(texto);
+      return true;
+    }
+  } catch { /* cai no fallback */ }
+
+  // Fallback para contextos não-seguros (ex.: file://)
+  try {
+    const area = document.createElement("textarea");
+    area.value = texto;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(area);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
+btnCopiar.addEventListener("click", async () => {
+  if (telaCamera.classList.contains("no-camera") || !videoCam.videoWidth) {
+    alert("Câmera indisponível. Não há imagem para ler o texto.");
+    return;
+  }
+  if (typeof Tesseract === "undefined") {
+    alert("Leitor de texto ainda carregando. Tente novamente em instantes.");
+    return;
+  }
+
+  const textoOriginal = btnCopiar.textContent;
+  btnCopiar.disabled = true;
+  btnCopiar.textContent = "Lendo…";
+
+  // Captura o frame atual do vídeo
+  const canvas = document.createElement("canvas");
+  canvas.width = videoCam.videoWidth;
+  canvas.height = videoCam.videoHeight;
+  canvas.getContext("2d").drawImage(videoCam, 0, 0, canvas.width, canvas.height);
+
+  try {
+    const { data } = await Tesseract.recognize(canvas, "por+eng", {
+      logger: (m) => {
+        if (m.status === "recognizing text") {
+          btnCopiar.textContent = `Lendo… ${Math.round(m.progress * 100)}%`;
+        }
+      }
+    });
+
+    const texto = (data.text || "").trim();
+    if (!texto) {
+      alert("Nenhum texto reconhecido na imagem. Aproxime a câmera do conteúdo.");
+      return;
+    }
+
+    const copiado = await copiarParaClipboard(texto);
+    if (copiado) {
+      alert(`Texto copiado para a área de transferência!\n\n${texto}`);
+    } else {
+      alert(`Texto reconhecido (não foi possível copiar automaticamente):\n\n${texto}`);
+    }
+  } catch (err) {
+    console.error("Erro no OCR:", err);
+    alert("Não foi possível ler o texto. Tente novamente.");
+  } finally {
+    btnCopiar.disabled = false;
+    btnCopiar.textContent = textoOriginal;
+  }
 });
 
 /* ── Camera stream ───────────────────────────── */
