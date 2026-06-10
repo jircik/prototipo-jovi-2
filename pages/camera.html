@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../src/css/camera.css">
 </head>
 <body>
-  <a class="hub-link" href="hub.html">← Hub</a>
   <main class="screen camera camera-ia" id="camera">
 
     <!-- Status Bar -->
@@ -74,18 +73,8 @@
       <button class="zoom-option" data-zoom="2">2×</button>
     </div>
 
-    <!-- Mode Tabs -->
-    <nav class="mode-tabs" id="mode-tabs">
-      <button class="mode-tab mode-tab-estudo" data-mode="estudo">Estudo</button>
-      <button class="mode-tab mode-tab-ia mode-tab-ativo" data-mode="ia">
-        IA
-        <span class="tab-dot"></span>
-      </button>
-      <button class="mode-tab" data-mode="noite">Noite</button>
-      <button class="mode-tab" data-mode="foto">Foto</button>
-      <button class="mode-tab" data-mode="video">Vídeo</button>
-      <a href="config.html" class="mode-tab">Modos</a>
-    </nav>
+    <!-- Mode Tabs (populated by camera.js from localStorage) -->
+    <nav class="mode-tabs" id="mode-tabs"></nav>
 
     <!-- Action Buttons (only in Estudo mode) -->
     <section class="action-row" id="action-row">

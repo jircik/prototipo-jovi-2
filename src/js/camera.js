@@ -1,37 +1,92 @@
-const telaCamera = document.getElementById("camera");
-const abasModo = document.querySelectorAll(".mode-tab[data-mode]");
-const labelChip = document.getElementById("chip-label");
-const barraZoom = document.getElementById("zoom-bar");
-const opcoesZoom = document.querySelectorAll(".zoom-option");
-const botoesTopo = document.querySelectorAll(".ctrl-btn");
-const overlayGrid = document.getElementById("grid-overlay");
-const btnShutter = document.getElementById("btn-shutter");
-const btnFlip = document.getElementById("btn-flip");
-const btnGaleria = document.getElementById("btn-gallery");
-const btnResumo = document.getElementById("btn-resumo");
-const btnCopiar = document.getElementById("btn-copiar");
-const contadorFotos = document.getElementById("contador-fotos");
-const overlayFlash = document.getElementById("overlay-flash");
-const videoCam = document.getElementById("video-cam");
+const LS_KEY = "jovi_modos_ativos";
+const DEFAULT_ATIVOS = [
+  { id: "ia",    label: "IA" },
+  { id: "estudo",label: "Estudo" },
+  { id: "noite", label: "Noite" },
+  { id: "foto",  label: "Foto" },
+  { id: "video", label: "Vídeo" }
+];
 
-const textosChip = {
-  ia: "IA · Modo Noite detectado",
-  estudo: "IA Auto · Texto detectado",
-  noite: "Modo Noite ativo",
-  foto: "Modo Foto",
-  video: "Gravando vídeo"
+const MODO_CONFIG = {
+  ia:      { chip: "IA · Modo Noite detectado",  cls: "mode-tab-ia" },
+  estudo:  { chip: "IA Auto · Texto detectado",  cls: "mode-tab-estudo" },
+  noite:   { chip: "Modo Noite ativo" },
+  foto:    { chip: "Modo Foto" },
+  video:   { chip: "Gravando vídeo" },
+  res:     { chip: "Alta Resolução ativa" },
+  pano:    { chip: "Modo Panorâmica" },
+  retrato: { chip: "Modo Retrato" },
+  comida:  { chip: "Modo Comida" },
+  timer:   { chip: "Modo Intervalo" },
+  burst:   { chip: "Modo Instantâneo" },
+  astro:   { chip: "Modo Astro" },
+  duplo:   { chip: "Vis. Dupla ativa" },
+  doc:     { chip: "Doc Ultra HD" }
 };
 
-let modoAtual = "ia";
+const telaCamera = document.getElementById("camera");
+const labelChip  = document.getElementById("chip-label");
+const navModos   = document.getElementById("mode-tabs");
+const opcoesZoom = document.querySelectorAll(".zoom-option");
+const botoesTopo = document.querySelectorAll(".ctrl-btn");
+const overlayGrid   = document.getElementById("grid-overlay");
+const btnShutter    = document.getElementById("btn-shutter");
+const btnFlip       = document.getElementById("btn-flip");
+const btnGaleria    = document.getElementById("btn-gallery");
+const btnResumo     = document.getElementById("btn-resumo");
+const btnCopiar     = document.getElementById("btn-copiar");
+const contadorFotos = document.getElementById("contador-fotos");
+const overlayFlash  = document.getElementById("overlay-flash");
+const videoCam      = document.getElementById("video-cam");
+
+let modoAtual    = "ia";
 let fotosTiradas = 0;
-let stream = null;
+let stream       = null;
 let cameraFrontal = false;
+
+function getModos() {
+  try {
+    const s = localStorage.getItem(LS_KEY);
+    return s ? JSON.parse(s) : DEFAULT_ATIVOS;
+  } catch { return DEFAULT_ATIVOS; }
+}
+
+/* ── Dynamic tab rendering ───────────────────── */
+function renderizarAbas() {
+  const modos = getModos();
+  navModos.innerHTML = "";
+
+  modos.forEach(({ id, label }) => {
+    const cfg = MODO_CONFIG[id] || {};
+    const btn = document.createElement("button");
+    btn.className = "mode-tab" + (cfg.cls ? " " + cfg.cls : "");
+    btn.dataset.mode = id;
+
+    if (id === "ia") {
+      btn.textContent = label;
+      btn.classList.add("mode-tab-ativo");
+    } else {
+      btn.textContent = label;
+    }
+
+    btn.addEventListener("click", () => trocarModo(id));
+    navModos.appendChild(btn);
+  });
+
+  const link = document.createElement("a");
+  link.href = "config.html";
+  link.className = "mode-tab";
+  link.textContent = "Modos";
+  navModos.appendChild(link);
+}
 
 /* ── Mode switching ──────────────────────────── */
 function trocarModo(novoModo) {
   if (novoModo === modoAtual) return;
 
-  abasModo.forEach((aba) => aba.classList.remove("mode-tab-ativo"));
+  document.querySelectorAll(".mode-tab[data-mode]").forEach(aba =>
+    aba.classList.remove("mode-tab-ativo")
+  );
   const abaAtiva = document.querySelector(`.mode-tab[data-mode="${novoModo}"]`);
   if (abaAtiva) abaAtiva.classList.add("mode-tab-ativo");
 
@@ -43,15 +98,9 @@ function trocarModo(novoModo) {
   }
 
   modoAtual = novoModo;
-  labelChip.textContent = textosChip[novoModo] || "IA Auto";
+  const cfg = MODO_CONFIG[novoModo];
+  labelChip.textContent = cfg ? cfg.chip : novoModo;
 }
-
-abasModo.forEach((aba) => {
-  aba.addEventListener("click", () => {
-    const modo = aba.dataset.mode;
-    trocarModo(modo);
-  });
-});
 
 /* ── Zoom ────────────────────────────────────── */
 opcoesZoom.forEach((opcao) => {
@@ -132,6 +181,8 @@ async function iniciarCamera() {
     console.warn("Câmera indisponível:", err);
   }
 }
+
+renderizarAbas();
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   iniciarCamera();

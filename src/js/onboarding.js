@@ -29,8 +29,7 @@ function irPara(indice) {
 
 btnProximo.addEventListener("click", () => {
   if (slideAtual === totalSlides - 1) {
-    alert("Tutorial concluído! Bem-vindo ao JOVI Cam.");
-    window.location.href = "hub.html";
+    window.location.href = "camera.html";
     return;
   }
   irPara(slideAtual + 1);
@@ -41,10 +40,7 @@ btnAnterior.addEventListener("click", () => {
 });
 
 btnPular.addEventListener("click", () => {
-  const confirmar = confirm("Pular o tutorial e ir direto para o app?");
-  if (confirmar) {
-    window.location.href = "hub.html";
-  }
+  window.location.href = "camera.html";
 });
 
 bolinhas.forEach((bolinha) => {

@@ -365,7 +365,7 @@ button {
   transition: color 0.15s ease, font-weight 0.15s ease;
 }
 
-.mode-tab-ativo { font-weight: 600; }
+.mode-tab-ativo { font-weight: 600; color: #fad142; }
 .mode-tab-estudo { color: rgba(51,199,120,0.7); }
 .mode-tab-ia { color: rgba(79,140,255,0.7); }
 
